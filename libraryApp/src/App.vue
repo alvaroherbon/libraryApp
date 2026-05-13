@@ -7,6 +7,6 @@ import BookList from "./views/BookList.vue"
   <main>
     <BookList />
     </main>
-</template>
+    </template>
 
 <style scoped></style>
