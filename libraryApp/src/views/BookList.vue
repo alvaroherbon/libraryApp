@@ -1,9 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { getBooks } from '../services/bookService.js';
+import BookSearchModal from '../components/BookSearchModal.vue'
 
 const books = ref([]);
 const loading = ref(true);
+
+
+const isModalOpen = ref(false)
 
 const fetchBooks = async () => {
   try {
@@ -22,6 +26,18 @@ onMounted(() => {
 </script>
 
 <template>
+
+<button @click="isModalOpen = true"
+            class="fixed bottom-8 right-8 w-16 h-16 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center text-3xl hover:bg-indigo-700 hover:scale-110 transition-all z-40">
+      +
+    </button>
+
+    <BookSearchModal
+      :isOpen="isModalOpen"
+      @close="isModalOpen = false"
+      @refresh="fetchBooks"
+    />
+
   <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
       <!-- Encabezado -->
